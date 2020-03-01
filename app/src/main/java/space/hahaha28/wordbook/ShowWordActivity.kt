@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.TextView
 import org.w3c.dom.Text
 import space.hahaha28.wordbook.moudle.Word
@@ -39,6 +40,20 @@ class ShowWordActivity : BaseActivity() {
     private fun getWord(){
         val intent = intent
         word = intent.getSerializableExtra(DATA_KEY) as Word
+    }
+
+    /**
+     * 播放按钮的点击事件
+     */
+    fun onPlayClick(v:View){
+        word.word.trim().play()
+    }
+
+    /**
+     * 句子的点击事件
+     */
+    fun onSentenceClick(v:View){
+        word.sentence.trim().play()
     }
 
     companion object{
