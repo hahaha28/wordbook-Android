@@ -29,7 +29,14 @@ class DBUtil {
      * 获取当天的单词
      */
     fun getTodayWords():List<Word>{
-            TODO()
+        // 先获取当天零点的时间
+        val current = System.currentTimeMillis()
+        val zero = current-(current+TimeZone.getDefault().rawOffset)%(1000*3600*24)
+        // 在数据库中查找
+        val words =  LitePal.where("time > ?","$zero")
+            .order("time desc")
+            .find<Word>()
+        return words
     }
 
     /**

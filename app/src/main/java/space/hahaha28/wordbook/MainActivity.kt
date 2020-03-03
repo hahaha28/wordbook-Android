@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.Toast
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.zoe.kydialog.briefdialog.SimpleListDialog
@@ -24,10 +25,6 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val btn = findViewById<Button>(R.id.button)
-        btn.setOnClickListener{
-            "turn on".play()
-        }
 
     }
 
@@ -38,6 +35,11 @@ class MainActivity : BaseActivity() {
         GetUpdateRequest().getResponse(true){
             val wordList = gson.fromJson<List<Word>>(it,object:TypeToken<List<Word>>(){}.type)
             Log.e("MyDebug",wordList.toJson())
+            runOnUiThread {
+                val toast = Toast.makeText(this,null,Toast.LENGTH_SHORT)
+                toast.setText("新增${wordList.size}个单词")
+                toast.show()
+            }
             dbUtil.saveWords(wordList)
         }
     }
@@ -48,4 +50,12 @@ class MainActivity : BaseActivity() {
     fun onReviewClick(v:View){
         ReviewActivity.startActivity(this,dbUtil.getRandomWords(10))
     }
+
+    /**
+     * 复习今日单词的点击事件
+     */
+    fun onReviewTodayClick(v:View){
+        ReviewActivity.startActivity(this,dbUtil.getTodayWords())
+    }
+
 }

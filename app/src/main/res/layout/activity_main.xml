@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
         android:onClick="onReviewClick"
-        android:text="复习"
+        android:text="随机10个"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,10 +34,9 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="6dp"
-        android:layout_marginLeft="6dp"
         android:layout_marginTop="112dp"
-        android:text="Button"
+        android:onClick="onReviewTodayClick"
+        android:text="今日单词"
         app:layout_constraintStart_toStartOf="@+id/review"
         app:layout_constraintTop_toBottomOf="@+id/review" />
 </androidx.constraintlayout.widget.ConstraintLayout>
